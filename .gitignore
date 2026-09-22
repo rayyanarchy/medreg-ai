@@ -1,0 +1,17 @@
+# Environment variables & secrets
+.env
+*.env
+
+# Python / uv artifacts
+.venv/
+__pycache__/
+*.pyc
+
+# Local Vector Databases & Caches (RAG-specific)
+chroma_db/
+faiss_index/
+.vectorstore/
+
+# IDE files
+.vscode/
+.idea/
