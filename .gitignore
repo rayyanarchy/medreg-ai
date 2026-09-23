@@ -15,3 +15,7 @@ faiss_index/
 # IDE files
 .vscode/
 .idea/
+
+# OS files
+.DS_Store
+*.DS_Store

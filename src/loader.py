@@ -1,22 +1,43 @@
-from pathlib import Path
-from pypdf import PdfReader
+"""
+Runtime loader: reads pre-converted Markdown files from ingestion/processed/.
+Never touches a PDF or imports pdfplumber — that dependency stays in ingestion/.
+"""
 
-def load_pdfs(data_dir: str) -> list[dict]:
+import re
+from pathlib import Path
+
+PAGE_MARKER = re.compile(r"<!-- page: (\d+) -->")
+
+
+def load_markdown(processed_dir: str) -> list[dict]:
     """
-    Returns one dict per PAGE (not per document), like:
-    {"source": "cdc_flu_factsheet.pdf", "page": 3, "text": "..."}
-    Keeping it per-page (not per-document) now saves you a step later —
-    you'll want page-level citations, not just "somewhere in this PDF."
+    Returns one dict per PAGE, same shape as before:
+    {"source": "cdc_flu_factsheet.md", "page": 3, "text": "..."}
     """
     records = []
-    for pdf_path in sorted(Path(data_dir).glob("*.pdf")):
-        reader = PdfReader(pdf_path)
-        for page_num, page in enumerate(reader.pages, start=1):
-            text = page.extract_text() or ""
-            if text.strip():  # skip blank pages
-                records.append({
-                    "source": pdf_path.name,
-                    "page": page_num,
-                    "text": text,
-                })
+    for md_path in sorted(Path(processed_dir).glob("*.md")):
+        content = md_path.read_text(encoding="utf-8")
+        records.extend(_split_pages(content, md_path.stem + ".pdf"))
+    return records
+
+
+def _split_pages(content: str, source_name: str) -> list[dict]:
+    """Splits one document's Markdown on page markers, pairing each
+    chunk of text with the page number that preceded it."""
+    matches = list(PAGE_MARKER.finditer(content))
+    records = []
+
+    for i, match in enumerate(matches):
+        page_num = int(match.group(1))
+        start = match.end()
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(content)
+        text = content[start:end].strip()
+
+        if text:
+            records.append({
+                "source": source_name,
+                "page": page_num,
+                "text": text,
+            })
+
     return records

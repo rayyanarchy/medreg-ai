@@ -7,13 +7,15 @@ authors = [
     { name = "Rayyan", email = "syedrayyaann00@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = [
-    "langchain>=1.4.2",
+dependencies = []
+
+[project.optional-dependencies]
+ingestion = [
+    "pypdf>=5.0",
+    "cryptography>=42.0",
+    "fonttools>=4.50",
+    "pdfplumber>=0.11.10",
 ]
 
-[project.scripts]
-medreg-ai = "medreg_ai:main"
-
-[build-system]
-requires = ["uv_build>=0.12.12,<0.13.0"]
-build-backend = "uv_build"
+[tool.uv]
+package = false
