@@ -7,7 +7,11 @@ authors = [
     { name = "Rayyan", email = "syedrayyaann00@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "chromadb>=1.5.9",
+    "openai>=3.19.2",
+    "python-dotenv>=1.2.3",
+]
 
 [project.optional-dependencies]
 ingestion = [
