@@ -1,13 +1,16 @@
-from collections import Counter
-from src.loader import load_markdown
-from src.chunker import chunk_records
+from src.loader import load_sections
+from src.chunker import make_chunks
 
-pages = load_markdown("ingestion/processed")
-chunks = chunk_records(pages)
+sections = load_sections()
+chunks = make_chunks(sections)
 
-per_file = Counter(p["source"] for p in pages)
-for source, count in per_file.items():
-    print(f"{source}: {count} pages")
+print(f"{len(sections)} sections -> {len(chunks)} chunks\n")
 
-print(len(pages), "pages ->", len(chunks), "chunks")
-print(chunks[0])
+for c in chunks:
+    words = len(c["text"].split())
+    print(f"{c['chunk_id']:<22} {c['citation']:<20} {words:>4} words")
+
+# Full text of one chunk, to eyeball the content
+target = next((c for c in chunks if c["section"] == "11.10"), chunks[0])
+print("\n--- sample chunk ---")
+print(target["text"])
