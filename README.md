@@ -9,7 +9,7 @@ A Retrieval-Augmented Generation (RAG) system for asking natural-language questi
 - **Vector store:** Chroma
 - **Answer generation:** OpenAI `gpt-4o-mini`
 - **Serving:** FastAPI + uvicorn
-- **Deployment:** Docker (planned)
+- **Deployment:** Docker + Docker Compose
 
 ## How to Run
 
@@ -62,6 +62,20 @@ curl -X POST http://127.0.0.1:8000/ask \
 }
 ```
 
+### With Docker
+
+The image holds the code and dependencies only. Your API key is read from `.env` when the container starts, and the Chroma index lives in `./db` on your machine, mounted into the container.
+
+```bash
+# build the image and the index (the index only needs rebuilding when chunking changes)
+docker compose build
+docker compose run --rm api python -m scripts.build_index
+
+# start the API on http://127.0.0.1:8000 (docs at /docs), and stop it
+docker compose up -d
+docker compose down
+```
+
 ## What's Working
 
 - Fetches 21 CFR Part 11 as XML from the eCFR API (`ingestion/fetch_ecfr.py`)
@@ -73,6 +87,7 @@ curl -X POST http://127.0.0.1:8000/ask \
 - Answers questions from the 6 retrieved chunks only, with numbered references back to the CFR paragraph, and says so when the regulation doesn't cover the question (`src/retriever.py`, `src/generator.py`, `scripts/ask.py`)
 - Scores retrieval against a 25-question eval set covering all 10 sections, including out-of-scope questions (`eval/eval_set.json`, `scripts/run_eval.py`). Current result: 100% hit rate @ 6 and MRR 0.802 on the 23 in-scope questions, up from 87% and 0.757 before the chunking and MMR changes
 - Serves the pipeline over HTTP: `POST /ask` returns the answer plus a structured sources list, `GET /health` reports status, and questions are validated (1–500 characters) before any model call (`src/api.py`)
+- Runs in Docker: a `python:3.13-slim` image with dependencies installed from `uv.lock`, running as a non-root user with a health check. The API key and the index stay outside the image (`Dockerfile`, `compose.yaml`)
 
 ## Roadmap
 
@@ -83,7 +98,7 @@ curl -X POST http://127.0.0.1:8000/ask \
 - [x] Improve retrieval on the eval misses (chunking fixes + MMR)
 - [ ] Add answer-level eval checks (citation correctness, refusal, faithfulness)
 - [x] FastAPI serving layer (`src/api.py`)
-- [ ] Docker containerization
+- [x] Docker containerization (`Dockerfile`, `compose.yaml`)
 
 ## License
 

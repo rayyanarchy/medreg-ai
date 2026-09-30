@@ -1,0 +1,13 @@
+# Build the index (once, or after chunker changes):
+#   docker compose run --rm api python -m scripts.build_index
+# Start the API on http://127.0.0.1:8000 (docs at /docs):
+#   docker compose up --build
+services:
+  api:
+    build: .
+    image: medreg-ai
+    env_file: .env  # provides OPENAI_API_KEY at run time
+    ports:
+      - "127.0.0.1:8000:8000"  # this machine only: every /ask spends OpenAI tokens
+    volumes:
+      - ./db:/app/db  # Chroma index lives on the host, outside the image

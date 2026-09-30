@@ -36,9 +36,10 @@ eCFR API ──fetch──▶ data/raw (XML) ──parse──▶ data/processed
 - Answer generation: `src/generator.py` — grounded answer with `[n]` references; end to end via `scripts/ask.py`
 - Retrieval eval: `eval/eval_set.json` (25 questions) + `scripts/run_eval.py`. Results on 2026-09-30: plain top-6 on the original chunks scored hit rate 87% (20/23), MRR 0.757; the chunking fixes raised it to 96% (22/23), MRR 0.793; adding MMR raised it to 100% (23/23), MRR 0.802. Weakest questions now: q13 (rank 5), q04, q21, q23 (rank 4)
 - API: `src/api.py` — FastAPI, `POST /ask` and `GET /health`
+- Docker: `Dockerfile`, `compose.yaml`, `.dockerignore`
 
 **Next up (in order)**
-1. Docker
+1. Answer-level eval checks (citation per sentence, refusal on out-of-scope questions, faithfulness)
 
 When something moves from "Next up" to "Working", also update the README: strike it off **Roadmap** and add it to **What's Working**.
 
@@ -59,6 +60,8 @@ When something moves from "Next up" to "Working", also update the README: strike
 - **Retrieval:** fetch 20 candidates, then MMR (lambda 0.8) picks the top 6. No similarity threshold, no reranking. Lambda was chosen from a sweep on the eval set: 0.7–0.9 all scored 23/23, 0.6 and below started dropping correct paragraphs.
 
 - **API shape:** `POST /ask` takes `{"question": str}` (whitespace stripped, 1–500 chars; anything else is a 422 before any OpenAI call) and returns `{"question", "answer", "sources": [{"number", "citation"}]}`. Retrieved chunk text is not returned. OpenAI failures return 502 with a generic message; details go to the server log. Endpoints are plain `def` because the OpenAI and Chroma calls block.
+
+- **Docker:** `python:3.13-slim` base, uv copied from `ghcr.io/astral-sh/uv` (pinned to the local uv version), dependencies from `uv.lock` via `uv sync --frozen`, non-root `app` user, `HEALTHCHECK` on `/health`. The image never contains `.env`, the API key or the index: the key comes from `env_file: .env` in `compose.yaml`, and `./db` is bind-mounted to `/app/db`. The port is published on 127.0.0.1 only, because every `/ask` spends OpenAI tokens.
 
 ## Open decisions — ask me when we get there
 
@@ -83,3 +86,4 @@ Run everything from the repo root. Scripts under `scripts/` import from `src`, s
 - Ask (retrieve + answer): `uv run python -m scripts.ask "your question"`
 - Retrieval eval: `uv run python -m scripts.run_eval` (one embedding call per in-scope question)
 - Run API: `uv run uvicorn src.api:app --reload`, then open http://127.0.0.1:8000/docs (each `/ask` = 1 embedding + 1 chat call; `/health` is free)
+- Docker: `docker compose build`, `docker compose run --rm api python -m scripts.build_index` (only when the index needs rebuilding), then `docker compose up -d` / `docker compose down`

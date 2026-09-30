@@ -1,0 +1,24 @@
+# Secrets: the API key is passed in at run time, never baked into the image
+.env
+*.env
+
+# Local environments and caches
+.venv/
+__pycache__/
+*.pyc
+
+# Generated data: the Chroma index is mounted at run time
+db/
+data/raw/
+
+# Not needed to serve the API
+.git/
+eval/
+tests/
+ingestion/
+
+# IDE and OS files
+.cursor/
+.vscode/
+.idea/
+.DS_Store
