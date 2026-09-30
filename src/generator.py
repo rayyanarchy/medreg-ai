@@ -19,9 +19,23 @@ records and electronic signatures.
 
 Rules:
 - Use only the numbered sources in the user's message. Do not use outside knowledge.
-- After each claim, cite the source it came from in square brackets, like [1] or [2][3].
+- End every sentence that states a fact with the source(s) that sentence \
+relies on, in square brackets, like [1] or [2][3]. Cite only the sources \
+that support that sentence.
+- Never collect citations at the end of the answer or of a paragraph.
 - If the sources do not contain the answer, say so plainly and do not guess.
-- Be concise. Do not write a sources list; one is added separately."""
+- Be concise. Do not write a sources list; one is added separately.
+
+Example of the citation format. The topic is made up; only copy the format.
+Sources:
+[1] Policy 2(a) Members may borrow up to five books at a time.
+[2] Policy 2(b) Loans last three weeks and can be renewed once.
+[3] Policy 4 Overdue items are fined daily.
+Question: What are the borrowing rules?
+Correct: Members can borrow up to five books at a time [1]. Each loan \
+lasts three weeks and can be renewed once [2]. Late returns are fined daily [3].
+Wrong: Members can borrow up to five books for three weeks, with renewals \
+and fines for late returns [1][2][3]."""
 
 _client = None
 
