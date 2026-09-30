@@ -32,12 +32,13 @@ eCFR API ──fetch──▶ data/raw (XML) ──parse──▶ data/processed
 - Embedding: `src/embedder.py` — OpenAI `text-embedding-3-small`
 - Vector store: `src/vector_store.py` — Chroma, persisted to `db/chroma`
 - Index build + smoke test: `scripts/build_index.py`, `scripts/query_index.py`
+- Retrieval: `src/retriever.py` — top-k chunks as plain dicts
+- Answer generation: `src/generator.py` — grounded answer with `[n]` references; end to end via `scripts/ask.py`
 
 **Next up (in order)**
-1. Retrieval + answer generation
-2. Evaluation set + eval script
-3. FastAPI serving
-4. Docker
+1. Evaluation set + eval script
+2. FastAPI serving
+3. Docker
 
 When something moves from "Next up" to "Working", also update the README: strike it off **Roadmap** and add it to **What's Working**.
 
@@ -52,10 +53,13 @@ When something moves from "Next up" to "Working", also update the README: strike
 - **README sections:** Tech Stack, How to Run, What's Working, Roadmap (checklist), License. License is MIT.
 - **Chroma:** collection `part11_chunks`, persisted to `db/chroma` (git-ignored). Chunk IDs are `21cfr_<section>` for a whole section, `21cfr_<section>_<letter>` for a lettered paragraph, and `21cfr_<section>_intro` for a lead-in — e.g. `21cfr_11.10_e`. Metadata per chunk: `section`, `subpart`, `citation`.
 
+- **Answer generation:** OpenAI `gpt-4o-mini`, temperature 0. The OpenAI project behind the key only allows models enabled under its Limits settings (currently `text-embedding-3-small` and `gpt-4o-mini`).
+- **Citation format:** numbered references — `[1]`, `[2]` in the answer, then a `Sources:` list mapping each number to its CFR citation. The list is built by code from the retrieved chunks, never written by the LLM.
+- **Retrieval:** top-k = 6, no similarity threshold, no reranking. Revisit threshold/reranking only once the eval set can measure them.
+
 ## Open decisions — ask me when we get there
 
-- LLM for answer generation, and the prompt/citation format for answers
-- Retrieval settings (top-k, similarity threshold, whether to add reranking)
+- Whether to add a similarity threshold or reranking (decide from eval results)
 - Eval metrics (e.g. retrieval hit rate, answer faithfulness) and how many questions
 
 ## Conventions
@@ -73,4 +77,5 @@ Run everything from the repo root. Scripts under `scripts/` import from `src`, s
 - Chunk (inspect): `uv run python -m scripts.inspect_chunks`
 - Build index: `uv run python -m scripts.build_index`
 - Query index: `uv run python -m scripts.query_index "your question"`
+- Ask (retrieve + answer): `uv run python -m scripts.ask "your question"`
 - Run API: `...`

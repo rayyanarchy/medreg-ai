@@ -7,6 +7,7 @@ A Retrieval-Augmented Generation (RAG) system for asking natural-language questi
 - **Ingestion:** custom XML parsing (eCFR API)
 - **Embeddings:** OpenAI `text-embedding-3-small`
 - **Vector store:** Chroma
+- **Answer generation:** OpenAI `gpt-4o-mini`
 - **Serving:** FastAPI (planned)
 - **Deployment:** Docker (planned)
 
@@ -34,6 +35,9 @@ python -m scripts.build_index
 
 # ask the index a question and print the closest chunks
 python -m scripts.query_index "What are the requirements for audit trails?"
+
+# get a cited answer (retrieve top 6 chunks, then generate)
+python -m scripts.ask "What are the requirements for audit trails?"
 ```
 
 ## What's Working
@@ -43,12 +47,13 @@ python -m scripts.query_index "What are the requirements for audit trails?"
 - Loads and chunks by section/subsection boundary, using the XML's `SECTION` / `SECTNO` / `SUBJECT` tags rather than fixed word-count chunks (`src/loader.py`, `src/chunker.py`)
 - Embeds chunks with OpenAI `text-embedding-3-small` (`src/embedder.py`)
 - Stores embeddings, chunk text and citation metadata in a persistent Chroma collection, and returns the closest chunks for a question (`src/vector_store.py`, `scripts/build_index.py`, `scripts/query_index.py`)
+- Answers questions from the top 6 retrieved chunks only, with numbered references back to the CFR paragraph, and says so when the regulation doesn't cover the question (`src/retriever.py`, `src/generator.py`, `scripts/ask.py`)
 
 ## Roadmap
 
 - [x] Generate and store embeddings (`src/embedder.py`)
 - [x] Index chunks in Chroma (`src/vector_store.py`)
-- [ ] Retrieval + answer generation
+- [x] Retrieval + answer generation (`src/retriever.py`, `src/generator.py`)
 - [ ] Build and run self-generated eval set (Q&A pairs, hand-reviewed)
 - [ ] FastAPI serving layer
 - [ ] Docker containerization
