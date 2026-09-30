@@ -42,6 +42,9 @@ python -m scripts.ask "What are the requirements for audit trails?"
 # score retrieval against the eval set (hit rate and MRR)
 python -m scripts.run_eval
 
+# score full answers (citations, right source, refusals); --rescore re-scores saved answers for free
+python -m scripts.run_answer_eval
+
 # serve the API, then open http://127.0.0.1:8000/docs to try it
 uvicorn src.api:app --reload
 ```
@@ -86,6 +89,7 @@ docker compose down
 - Retrieves 20 candidates and picks 6 with MMR (maximal marginal relevance), so near-duplicate paragraphs don't crowd out the right one (`src/retriever.py`)
 - Answers questions from the 6 retrieved chunks only, with numbered references back to the CFR paragraph, and says so when the regulation doesn't cover the question (`src/retriever.py`, `src/generator.py`, `scripts/ask.py`)
 - Scores retrieval against a 25-question eval set covering all 10 sections, including out-of-scope questions (`eval/eval_set.json`, `scripts/run_eval.py`). Current result: 100% hit rate @ 6 and MRR 0.802 on the 23 in-scope questions, up from 87% and 0.757 before the chunking and MMR changes
+- Scores the generated answers on the same set (`scripts/run_answer_eval.py`, answers saved in `eval/answers.json`). Current result: all 23 in-scope answers cite an expected paragraph, both out-of-scope questions are refused, no false refusals or invented source numbers, and 87% of sentences carry a citation
 - Serves the pipeline over HTTP: `POST /ask` returns the answer plus a structured sources list, `GET /health` reports status, and questions are validated (1–500 characters) before any model call (`src/api.py`)
 - Runs in Docker: a `python:3.13-slim` image with dependencies installed from `uv.lock`, running as a non-root user with a health check. The API key and the index stay outside the image (`Dockerfile`, `compose.yaml`)
 
@@ -96,7 +100,9 @@ docker compose down
 - [x] Retrieval + answer generation (`src/retriever.py`, `src/generator.py`)
 - [x] Build and run self-generated eval set for retrieval (`eval/eval_set.json`, `scripts/run_eval.py`)
 - [x] Improve retrieval on the eval misses (chunking fixes + MMR)
-- [ ] Add answer-level eval checks (citation correctness, refusal, faithfulness)
+- [x] Add answer-level eval checks (citation coverage, right source, refusals) (`scripts/run_answer_eval.py`)
+- [ ] Faithfulness check (LLM judge: is each sentence supported by the paragraph it cites?)
+- [ ] Handle multi-part questions (q22 retrieved only the closed-system half of an open-vs-closed question)
 - [x] FastAPI serving layer (`src/api.py`)
 - [x] Docker containerization (`Dockerfile`, `compose.yaml`)
 

@@ -38,8 +38,10 @@ eCFR API ──fetch──▶ data/raw (XML) ──parse──▶ data/processed
 - API: `src/api.py` — FastAPI, `POST /ask` and `GET /health`
 - Docker: `Dockerfile`, `compose.yaml`, `.dockerignore`
 
+- Answer eval: `scripts/run_answer_eval.py`, answers saved to `eval/answers.json` (committed, so scores trace to exact answers). Results on 2026-10-01: citation coverage 87% (41/47 sentences), right source 23/23, out-of-scope refused 2/2, false refusals 0, invalid markers 0. Known weakness: q22 (open vs closed systems) retrieved only closed-system chunks, so the answer covers half the question — the retrieval hit metric counts it as a hit because any one expected citation matches.
+
 **Next up (in order)**
-1. Answer-level eval checks (citation per sentence, refusal on out-of-scope questions, faithfulness)
+1. Nothing scheduled. Candidates: faithfulness (LLM judge), multi-part questions (q22)
 
 When something moves from "Next up" to "Working", also update the README: strike it off **Roadmap** and add it to **What's Working**.
 
@@ -66,7 +68,7 @@ When something moves from "Next up" to "Working", also update the README: strike
 ## Open decisions — ask me when we get there
 
 - Whether to add a similarity threshold or reranking (decide from eval results)
-- Answer-level eval metrics (citation correctness, refusal on out-of-scope questions, faithfulness)
+- Whether to add a faithfulness check (LLM judge, ~23 extra chat calls per run) and how to handle multi-part questions
 
 ## Conventions
 
@@ -85,5 +87,6 @@ Run everything from the repo root. Scripts under `scripts/` import from `src`, s
 - Query index: `uv run python -m scripts.query_index "your question"`
 - Ask (retrieve + answer): `uv run python -m scripts.ask "your question"`
 - Retrieval eval: `uv run python -m scripts.run_eval` (one embedding call per in-scope question)
+- Answer eval: `uv run python -m scripts.run_answer_eval` (25 embedding + 25 chat calls); `--rescore` re-scores `eval/answers.json` with no API calls
 - Run API: `uv run uvicorn src.api:app --reload`, then open http://127.0.0.1:8000/docs (each `/ask` = 1 embedding + 1 chat call; `/health` is free)
 - Docker: `docker compose build`, `docker compose run --rm api python -m scripts.build_index` (only when the index needs rebuilding), then `docker compose up -d` / `docker compose down`

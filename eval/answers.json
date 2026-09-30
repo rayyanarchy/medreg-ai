@@ -1,0 +1,412 @@
+[
+  {
+    "id": "q01",
+    "question": "We keep records under part 121. Does Part 11 apply to them?",
+    "expected_citations": [
+      "21 CFR 11.1(o)"
+    ],
+    "retrieved": [
+      "21 CFR 11.1(o)",
+      "21 CFR 11.1(i)",
+      "21 CFR 11.1(k)",
+      "21 CFR 11.1(p)",
+      "21 CFR 11.1(j)",
+      "21 CFR 11.1(n)"
+    ],
+    "answer": "Part 11 does not apply to records required to be established or maintained by part 121 [1]. However, records that satisfy the requirements of part 121 but are also required under other applicable statutory provisions or regulations remain subject to Part 11 [1]."
+  },
+  {
+    "id": "q02",
+    "question": "Can we send a submission to FDA electronically without a paper copy, and how do we know which document types FDA accepts that way?",
+    "expected_citations": [
+      "21 CFR 11.2"
+    ],
+    "retrieved": [
+      "21 CFR 11.2",
+      "21 CFR 11.100",
+      "21 CFR 11.1(e)",
+      "21 CFR 11.1(b)",
+      "21 CFR 11.50",
+      "21 CFR 11.1(c)"
+    ],
+    "answer": "Yes, you can send a submission to the FDA electronically without a paper copy, provided that the requirements of 21 CFR Part 11 are met and the document or parts of a document have been identified in public docket No. 92S-0251 as being acceptable for submission in electronic form [1]. To know which document types the FDA accepts electronically, you should consult the public docket No. 92S-0251, which specifies the types of documents and the agency receiving unit(s) to which such submissions may be made [1]."
+  },
+  {
+    "id": "q03",
+    "question": "What does Part 11 mean by a digital signature, as opposed to an electronic signature?",
+    "expected_citations": [
+      "21 CFR 11.3(b)(5)",
+      "21 CFR 11.3(b)(7)"
+    ],
+    "retrieved": [
+      "21 CFR 11.3(b)(5)",
+      "21 CFR 11.3(b)(7)",
+      "21 CFR 11.1(g)",
+      "21 CFR 11.1(c)",
+      "21 CFR 11.50",
+      "21 CFR 11.200"
+    ],
+    "answer": "A digital signature is defined as an electronic signature based on cryptographic methods of originator authentication, which allows for the verification of the signer's identity and the integrity of the data [1]. In contrast, an electronic signature is described as a computer data compilation of any symbol or series of symbols that an individual executes, adopts, or authorizes to serve as the legally binding equivalent of a handwritten signature [2]."
+  },
+  {
+    "id": "q04",
+    "question": "Do we have to be able to pull up old electronic records quickly for as long as we are required to keep them?",
+    "expected_citations": [
+      "21 CFR 11.10(c)"
+    ],
+    "retrieved": [
+      "21 CFR 11.10(e)",
+      "21 CFR 11.1(d)",
+      "21 CFR 11.2",
+      "21 CFR 11.10(b)",
+      "21 CFR 11.10(c)",
+      "21 CFR 11.1(b)"
+    ],
+    "answer": "Yes, records must be protected to enable their accurate and ready retrieval throughout the records retention period [5]."
+  },
+  {
+    "id": "q05",
+    "question": "Our records travel over a network we don't control. What extra protections does the rule expect?",
+    "expected_citations": [
+      "21 CFR 11.30"
+    ],
+    "retrieved": [
+      "21 CFR 11.30",
+      "21 CFR 11.1(p)",
+      "21 CFR 11.10(e)",
+      "21 CFR 11.300",
+      "21 CFR 11.10(c)",
+      "21 CFR 11.10(g)"
+    ],
+    "answer": "For records that travel over a network you don't control, the rule expects you to employ procedures and controls designed to ensure the authenticity, integrity, and confidentiality of electronic records. This includes measures such as document encryption and the use of appropriate digital signature standards to ensure record authenticity, integrity, and confidentiality as necessary under the circumstances [1]."
+  },
+  {
+    "id": "q06",
+    "question": "When someone signs a record electronically, what details about the signing have to appear with the record?",
+    "expected_citations": [
+      "21 CFR 11.50"
+    ],
+    "retrieved": [
+      "21 CFR 11.50",
+      "21 CFR 11.70",
+      "21 CFR 11.1(c)",
+      "21 CFR 11.100",
+      "21 CFR 11.3(b)(7)",
+      "21 CFR 11.200"
+    ],
+    "answer": "When someone signs a record electronically, the following details must appear with the record: the printed name of the signer, the date and time when the signature was executed, and the meaning associated with the signature (such as review, approval, responsibility, or authorship) [1]. These items must be subject to the same controls as electronic records and included as part of any human-readable form of the electronic record [1]."
+  },
+  {
+    "id": "q07",
+    "question": "What stops someone from copying an electronic signature off one record and attaching it to another?",
+    "expected_citations": [
+      "21 CFR 11.70"
+    ],
+    "retrieved": [
+      "21 CFR 11.70",
+      "21 CFR 11.200",
+      "21 CFR 11.100",
+      "21 CFR 11.50",
+      "21 CFR 11.10",
+      "21 CFR 11.3(b)(7)"
+    ],
+    "answer": "Electronic signatures and handwritten signatures executed to electronic records must be linked to their respective electronic records to prevent signatures from being excised, copied, or transferred to falsify an electronic record by ordinary means [1]."
+  },
+  {
+    "id": "q08",
+    "question": "Do we have to confirm who a person is before giving them an electronic signature?",
+    "expected_citations": [
+      "21 CFR 11.100"
+    ],
+    "retrieved": [
+      "21 CFR 11.50",
+      "21 CFR 11.100",
+      "21 CFR 11.200",
+      "21 CFR 11.1(c)",
+      "21 CFR 11.3(b)(7)",
+      "21 CFR 11.70"
+    ],
+    "answer": "Yes, before an organization establishes, assigns, certifies, or otherwise sanctions an individual's electronic signature, the organization must verify the identity of the individual [2]."
+  },
+  {
+    "id": "q09",
+    "question": "If a user signs several records in one login session, do they have to enter both their user ID and password every time?",
+    "expected_citations": [
+      "21 CFR 11.200"
+    ],
+    "retrieved": [
+      "21 CFR 11.200",
+      "21 CFR 11.300",
+      "21 CFR 11.70",
+      "21 CFR 11.10(e)",
+      "21 CFR 11.50",
+      "21 CFR 11.10(g)"
+    ],
+    "answer": "When an individual executes a series of signings during a single, continuous period of controlled system access, the first signing must be executed using all electronic signature components, which include both the user ID and password. Subsequent signings during that session can be executed using at least one electronic signature component that is only executable by the individual [1]."
+  },
+  {
+    "id": "q10",
+    "question": "We issue tokens that generate passcodes. Do they need to be tested, and what do we do if one is lost or stolen?",
+    "expected_citations": [
+      "21 CFR 11.300"
+    ],
+    "retrieved": [
+      "21 CFR 11.300",
+      "21 CFR 11.200",
+      "21 CFR 11.10(j)",
+      "21 CFR 11.10(e)",
+      "21 CFR 11.10(h)",
+      "21 CFR 11.3(b)(3)"
+    ],
+    "answer": "Yes, the tokens that generate passcodes need to be tested initially and periodically to ensure they function properly and have not been altered in an unauthorized manner [1]. If a token is lost or stolen, you must follow loss management procedures to electronically deauthorize the compromised token and issue temporary or permanent replacements using suitable, rigorous controls [1]."
+  },
+  {
+    "id": "q11",
+    "question": "Which kinds of records are exempt from Part 11?",
+    "expected_citations": [
+      "21 CFR 11.1(f)",
+      "21 CFR 11.1(i)",
+      "21 CFR 11.1(j)",
+      "21 CFR 11.1(k)",
+      "21 CFR 11.1(l)",
+      "21 CFR 11.1(m)",
+      "21 CFR 11.1(n)",
+      "21 CFR 11.1(o)",
+      "21 CFR 11.1(p)"
+    ],
+    "retrieved": [
+      "21 CFR 11.1(k)",
+      "21 CFR 11.1(p)",
+      "21 CFR 11.1(j)",
+      "21 CFR 11.1(i)",
+      "21 CFR 11.1(b)",
+      "21 CFR 11.1(f)"
+    ],
+    "answer": "Records required to be established or maintained by part 112 of this chapter are exempt from Part 11 [1]. Records required by subpart R of part 1 of this chapter are also exempt [2]. Additionally, records required by part 507 of this chapter are not subject to Part 11 [3]. Records required by part 117 of this chapter are similarly exempt [4]. Lastly, records required by §§ 1.326 through 1.368 of this chapter are excluded from Part 11 [6]."
+  },
+  {
+    "id": "q12",
+    "question": "Where do I find the meaning of terms this part uses but does not define itself?",
+    "expected_citations": [
+      "21 CFR 11.3(a)"
+    ],
+    "retrieved": [
+      "21 CFR 11.3(a)",
+      "21 CFR 11.1(n)",
+      "21 CFR 11.3(b)(3)",
+      "21 CFR 11.1(h)",
+      "21 CFR 11.3(b)(9)",
+      "21 CFR 11.3(b)(1)"
+    ],
+    "answer": "The meanings of terms used in this part but not defined within it can be found in section 201 of the Federal Food, Drug, and Cosmetic Act [1]."
+  },
+  {
+    "id": "q13",
+    "question": "If an FDA inspector asks for copies of our electronic records, what form do the copies need to be in?",
+    "expected_citations": [
+      "21 CFR 11.10(b)"
+    ],
+    "retrieved": [
+      "21 CFR 11.1(e)",
+      "21 CFR 11.2",
+      "21 CFR 11.1(b)",
+      "21 CFR 11.100",
+      "21 CFR 11.10(b)",
+      "21 CFR 11.1(d)"
+    ],
+    "answer": "The copies of electronic records must be generated in both human-readable and electronic form suitable for inspection, review, and copying by the agency [5]."
+  },
+  {
+    "id": "q14",
+    "question": "Do records required by part 117 fall under Part 11?",
+    "expected_citations": [
+      "21 CFR 11.1(i)"
+    ],
+    "retrieved": [
+      "21 CFR 11.1(i)",
+      "21 CFR 11.1(o)",
+      "21 CFR 11.1(k)",
+      "21 CFR 11.1(j)",
+      "21 CFR 11.1(p)",
+      "21 CFR 11.1(n)"
+    ],
+    "answer": "Records required to be established or maintained by part 117 do not fall under Part 11 [1]. However, records that satisfy the requirements of part 117 but are also required under other applicable statutory provisions or regulations remain subject to Part 11 [1]."
+  },
+  {
+    "id": "q15",
+    "question": "Do the people who build and use our electronic record system need any particular training or background?",
+    "expected_citations": [
+      "21 CFR 11.10(i)"
+    ],
+    "retrieved": [
+      "21 CFR 11.10(i)",
+      "21 CFR 11.3(b)(6)",
+      "21 CFR 11.10(e)",
+      "21 CFR 11.2",
+      "21 CFR 11.30",
+      "21 CFR 11.100"
+    ],
+    "answer": "Yes, persons who develop, maintain, or use electronic record/electronic signature systems must have the education, training, and experience necessary to perform their assigned tasks [1]."
+  },
+  {
+    "id": "q16",
+    "question": "Does Part 11 apply to records we keep under subpart M of part 1?",
+    "expected_citations": [
+      "21 CFR 11.1(m)"
+    ],
+    "retrieved": [
+      "21 CFR 11.1(m)",
+      "21 CFR 11.1(p)",
+      "21 CFR 11.1(n)",
+      "21 CFR 11.1(l)",
+      "21 CFR 11.1(f)",
+      "21 CFR 11.1(k)"
+    ],
+    "answer": "No, Part 11 does not apply to records required to be established or maintained by subpart M of part 1 of this chapter [1]. However, records that satisfy the requirements of subpart M but are also required under other applicable statutory provisions or regulations remain subject to Part 11 [1]."
+  },
+  {
+    "id": "q17",
+    "question": "Do we need to validate our computer system, and what is validation meant to prove?",
+    "expected_citations": [
+      "21 CFR 11.10(a)"
+    ],
+    "retrieved": [
+      "21 CFR 11.10(a)",
+      "21 CFR 11.10(g)",
+      "21 CFR 11.10(h)",
+      "21 CFR 11.30",
+      "21 CFR 11.300",
+      "21 CFR 11.10(j)"
+    ],
+    "answer": "Yes, you need to validate your computer system. Validation is meant to ensure accuracy, reliability, consistent intended performance, and the ability to discern invalid or altered records [1]."
+  },
+  {
+    "id": "q18",
+    "question": "Does Part 11 apply to electronic signatures obtained under section 101.8(d)?",
+    "expected_citations": [
+      "21 CFR 11.1(h)"
+    ],
+    "retrieved": [
+      "21 CFR 11.1(g)",
+      "21 CFR 11.1(h)",
+      "21 CFR 11.1(c)",
+      "21 CFR 11.50",
+      "21 CFR 11.3(b)(7)",
+      "21 CFR 11.100"
+    ],
+    "answer": "No, Part 11 does not apply to electronic signatures obtained under section 101.8(d) [2]."
+  },
+  {
+    "id": "q19",
+    "question": "Does the system need to log who changed a record and when, and how long must that log be kept?",
+    "expected_citations": [
+      "21 CFR 11.10(e)"
+    ],
+    "retrieved": [
+      "21 CFR 11.10(e)",
+      "21 CFR 11.10(c)",
+      "21 CFR 11.30",
+      "21 CFR 11.1(f)",
+      "21 CFR 11.10(k)",
+      "21 CFR 11.10(a)"
+    ],
+    "answer": "Yes, the system must use secure, computer-generated, time-stamped audit trails to independently record the date and time of operator entries and actions that create, modify, or delete electronic records [1]. The audit trail documentation must be retained for a period at least as long as that required for the subject electronic records [1]."
+  },
+  {
+    "id": "q20",
+    "question": "Are records kept under subpart L of part 1 exempt from Part 11?",
+    "expected_citations": [
+      "21 CFR 11.1(l)"
+    ],
+    "retrieved": [
+      "21 CFR 11.1(l)",
+      "21 CFR 11.1(p)",
+      "21 CFR 11.1(f)",
+      "21 CFR 11.1(k)",
+      "21 CFR 11.1(n)",
+      "21 CFR 11.1(m)"
+    ],
+    "answer": "Yes, records required to be established or maintained by subpart L of part 1 are exempt from Part 11 [1]. However, records that satisfy the requirements of subpart L but are also required under other applicable statutory provisions or regulations remain subject to Part 11 [1]."
+  },
+  {
+    "id": "q21",
+    "question": "What is the scope of this part?",
+    "expected_citations": [
+      "21 CFR 11.1(a)",
+      "21 CFR 11.1(b)"
+    ],
+    "retrieved": [
+      "21 CFR 11.1(j)",
+      "21 CFR 11.1(e)",
+      "21 CFR 11.1(h)",
+      "21 CFR 11.1(b)",
+      "21 CFR 11.1(i)",
+      "21 CFR 11.1(n)"
+    ],
+    "answer": "This part applies to records in electronic form that are created, modified, maintained, archived, retrieved, or transmitted under any records requirements set forth in agency regulations [4]. It also applies to electronic records submitted to the agency under the requirements of the Federal Food, Drug, and Cosmetic Act and the Public Health Service Act, even if such records are not specifically identified in agency regulations [4]. However, this part does not apply to records required to be established or maintained by part 507, part 117, or subpart O of part 1 of this chapter [1][5][6]. Additionally, this part does not apply to electronic signatures obtained under § 101.8(d) [3]. Computer systems, controls, and documentation maintained under this part must be readily available for FDA inspection [2]."
+  },
+  {
+    "id": "q22",
+    "question": "What is the difference between an open system and a closed system, and what controls apply to each?",
+    "expected_citations": [
+      "21 CFR 11.3(b)(4)",
+      "21 CFR 11.3(b)(9)",
+      "21 CFR 11.10",
+      "21 CFR 11.30"
+    ],
+    "retrieved": [
+      "21 CFR 11.10(d)",
+      "21 CFR 11.3(b)(4)",
+      "21 CFR 11.10(a)",
+      "21 CFR 11.10(f)",
+      "21 CFR 11.10(k)",
+      "21 CFR 11.10(g)"
+    ],
+    "answer": "The sources provided do not define an open system, so I cannot provide a comparison between open and closed systems. However, a closed system is defined as an environment where system access is controlled by individuals responsible for the content of electronic records on the system [2]. \n\nFor closed systems, several controls are required, including limiting system access to authorized individuals [1], validating systems for accuracy and reliability [3], using operational system checks to enforce permitted sequencing of steps [4], implementing controls over systems documentation [5], and using authority checks to ensure only authorized individuals can perform specific actions [6]. \n\nUnfortunately, without information on open systems, I cannot detail the controls that apply to them."
+  },
+  {
+    "id": "q23",
+    "question": "Can two employees share one login and password for signing records?",
+    "expected_citations": [
+      "21 CFR 11.100",
+      "21 CFR 11.300"
+    ],
+    "retrieved": [
+      "21 CFR 11.200",
+      "21 CFR 11.70",
+      "21 CFR 11.10(g)",
+      "21 CFR 11.300",
+      "21 CFR 11.50",
+      "21 CFR 11.10(j)"
+    ],
+    "answer": "No, two employees cannot share one login and password for signing records. Each individual must have a unique combination of identification code and password to ensure security and integrity [4]."
+  },
+  {
+    "id": "q24",
+    "question": "What is the HIPAA penalty for a data breach?",
+    "expected_citations": [],
+    "retrieved": [
+      "21 CFR 11.300",
+      "21 CFR 11.1(b)",
+      "21 CFR 11.100",
+      "21 CFR 11.3(b)(3)",
+      "21 CFR 11.3(b)(9)",
+      "21 CFR 11.1(e)"
+    ],
+    "answer": "The sources provided do not contain information regarding the HIPAA penalty for a data breach."
+  },
+  {
+    "id": "q25",
+    "question": "How many years must clinical trial records be retained?",
+    "expected_citations": [],
+    "retrieved": [
+      "21 CFR 11.10(c)",
+      "21 CFR 11.10(e)",
+      "21 CFR 11.1(b)",
+      "21 CFR 11.100",
+      "21 CFR 11.1(j)",
+      "21 CFR 11.1(e)"
+    ],
+    "answer": "The sources provided do not specify the number of years that clinical trial records must be retained. Therefore, I cannot provide an answer to that question."
+  }
+]
