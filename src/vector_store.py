@@ -45,7 +45,13 @@ def add_chunks(chunks: list[dict], embeddings: list[list[float]], collection=Non
     )
 
 
-def query(query_embedding: list[float], n_results: int = 4) -> dict:
+def query(
+    query_embedding: list[float], n_results: int = 4, include_embeddings: bool = False
+) -> dict:
+    """Returns the closest chunks; pass include_embeddings=True to also get their vectors."""
+    include = ["documents", "metadatas", "distances"]
+    if include_embeddings:
+        include.append("embeddings")
     return get_collection().query(
-        query_embeddings=[query_embedding], n_results=n_results
+        query_embeddings=[query_embedding], n_results=n_results, include=include
     )

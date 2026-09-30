@@ -19,7 +19,8 @@ def build():
     print(f"{len(sections)} sections -> {len(chunks)} chunks")
 
     collection = reset_collection()
-    embeddings = embed_texts([c["text"] for c in chunks])  # 37 chunks: one API call
+    # Embed the lead-in-free version; Chroma still stores the full "text".
+    embeddings = embed_texts([c["embed_text"] for c in chunks])  # one API call
     add_chunks(chunks, embeddings, collection)
 
     print(f"Stored {collection.count()} chunks in Chroma.")

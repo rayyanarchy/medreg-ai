@@ -17,7 +17,7 @@ from src.vector_store import query
 
 DEFAULT_QUESTION = "What are the requirements for audit trails?"
 PREVIEW_CHARS = 100
-PARAGRAPH_LABEL = re.compile(r"\(([a-z])\)$")  # the "(e)" in "21 CFR 11.10(e)"
+PARAGRAPH_LABEL = re.compile(r"\(([a-z0-9]+)\)$")  # the "(e)" in "21 CFR 11.10(e)", or "(3)" in "11.3(b)(3)"
 
 
 def make_preview(doc: str, citation: str) -> str:

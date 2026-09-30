@@ -43,7 +43,7 @@ def run(path: Path) -> None:
         expected = q["expected_citations"][0]
         if len(q["expected_citations"]) > 1:
             expected += f" +{len(q['expected_citations']) - 1}"
-        print(f"{q['id']}  {result:<7} {expected:<18} {q['question'][:70]}")
+        print(f"{q['id']}  {result:<7} {expected:<22} {q['question'][:70]}")
 
     hits = [rank for rank in ranks if rank]
     hit_rate = len(hits) / len(ranks)

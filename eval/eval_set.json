@@ -14,7 +14,7 @@
   {
     "id": "q03",
     "question": "What does Part 11 mean by a digital signature, as opposed to an electronic signature?",
-    "expected_citations": ["21 CFR 11.3(b)"],
+    "expected_citations": ["21 CFR 11.3(b)(5)", "21 CFR 11.3(b)(7)"],
     "origin": "claude_draft"
   },
   {
@@ -138,7 +138,7 @@
   {
     "id": "q22",
     "question": "What is the difference between an open system and a closed system, and what controls apply to each?",
-    "expected_citations": ["21 CFR 11.3(b)", "21 CFR 11.10", "21 CFR 11.30"],
+    "expected_citations": ["21 CFR 11.3(b)(4)", "21 CFR 11.3(b)(9)", "21 CFR 11.10", "21 CFR 11.30"],
     "origin": "claude_draft"
   },
   {
