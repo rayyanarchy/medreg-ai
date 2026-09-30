@@ -34,11 +34,11 @@ eCFR API ──fetch──▶ data/raw (XML) ──parse──▶ data/processed
 - Index build + smoke test: `scripts/build_index.py`, `scripts/query_index.py`
 - Retrieval: `src/retriever.py` — top-k chunks as plain dicts
 - Answer generation: `src/generator.py` — grounded answer with `[n]` references; end to end via `scripts/ask.py`
+- Retrieval eval: `eval/eval_set.json` (25 questions) + `scripts/run_eval.py`. Baseline on 2026-09-30: hit rate @ 6 = 87% (20/23), MRR 0.757. Misses: q03 (definitions chunk, rank 8), q13 (`11.10(b)`, rank 8), q21 (scope, crowded out by the `11.1` exclusion paragraphs)
 
 **Next up (in order)**
-1. Evaluation set + eval script
-2. FastAPI serving
-3. Docker
+1. FastAPI serving
+2. Docker
 
 When something moves from "Next up" to "Working", also update the README: strike it off **Roadmap** and add it to **What's Working**.
 
@@ -48,7 +48,8 @@ When something moves from "Next up" to "Working", also update the README: strike
 - **eCFR gotcha:** the `/api/versioner/v1/full/{date}/...` endpoint returns **404 for `current`**. Resolve an explicit date (YYYY-MM-DD) first, then fetch.
 - **Chunking:** by regulatory structure using the XML's `SECTION` / `SECTNO` / `SUBJECT` tags, not fixed word counts. Long sections are split by lettered paragraph — (a), (b), (c)…; short sections stay as a single chunk. Keep section number and subject as chunk metadata so answers can be traced to the regulation.
 - **Stack:** OpenAI `text-embedding-3-small`, Chroma, FastAPI, Docker.
-- **Eval set:** self-generated from the Part 11 text (LLM-drafted, then hand-reviewed by me), not an off-the-shelf benchmark.
+- **Eval set:** self-generated from the Part 11 text, not an off-the-shelf benchmark. Claude drafts the questions in the conversation and I review them — no script that calls the OpenAI API to generate questions. About 25 questions in `eval/eval_set.json`, each with `id`, `question`, `expected_citations` (empty list = out-of-scope question) and `origin`.
+- **Eval metrics (first version):** retrieval only — hit rate @ 6 and MRR. A question is a hit when any expected citation is in the top 6.
 - **Data layout:** raw fetched files → `data/raw/`, parsed output → `data/processed/`. `ingestion/` holds scripts only.
 - **README sections:** Tech Stack, How to Run, What's Working, Roadmap (checklist), License. License is MIT.
 - **Chroma:** collection `part11_chunks`, persisted to `db/chroma` (git-ignored). Chunk IDs are `21cfr_<section>` for a whole section, `21cfr_<section>_<letter>` for a lettered paragraph, and `21cfr_<section>_intro` for a lead-in — e.g. `21cfr_11.10_e`. Metadata per chunk: `section`, `subpart`, `citation`.
@@ -60,7 +61,7 @@ When something moves from "Next up" to "Working", also update the README: strike
 ## Open decisions — ask me when we get there
 
 - Whether to add a similarity threshold or reranking (decide from eval results)
-- Eval metrics (e.g. retrieval hit rate, answer faithfulness) and how many questions
+- Answer-level eval metrics (citation correctness, refusal on out-of-scope questions, faithfulness)
 
 ## Conventions
 
@@ -78,4 +79,5 @@ Run everything from the repo root. Scripts under `scripts/` import from `src`, s
 - Build index: `uv run python -m scripts.build_index`
 - Query index: `uv run python -m scripts.query_index "your question"`
 - Ask (retrieve + answer): `uv run python -m scripts.ask "your question"`
+- Retrieval eval: `uv run python -m scripts.run_eval` (one embedding call per in-scope question)
 - Run API: `...`

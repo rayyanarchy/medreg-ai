@@ -38,6 +38,9 @@ python -m scripts.query_index "What are the requirements for audit trails?"
 
 # get a cited answer (retrieve top 6 chunks, then generate)
 python -m scripts.ask "What are the requirements for audit trails?"
+
+# score retrieval against the eval set (hit rate and MRR)
+python -m scripts.run_eval
 ```
 
 ## What's Working
@@ -48,13 +51,15 @@ python -m scripts.ask "What are the requirements for audit trails?"
 - Embeds chunks with OpenAI `text-embedding-3-small` (`src/embedder.py`)
 - Stores embeddings, chunk text and citation metadata in a persistent Chroma collection, and returns the closest chunks for a question (`src/vector_store.py`, `scripts/build_index.py`, `scripts/query_index.py`)
 - Answers questions from the top 6 retrieved chunks only, with numbered references back to the CFR paragraph, and says so when the regulation doesn't cover the question (`src/retriever.py`, `src/generator.py`, `scripts/ask.py`)
+- Scores retrieval against a 25-question eval set covering all 10 sections, including out-of-scope questions (`eval/eval_set.json`, `scripts/run_eval.py`). Current result: 87% hit rate @ 6 and MRR 0.757 on the 23 in-scope questions
 
 ## Roadmap
 
 - [x] Generate and store embeddings (`src/embedder.py`)
 - [x] Index chunks in Chroma (`src/vector_store.py`)
 - [x] Retrieval + answer generation (`src/retriever.py`, `src/generator.py`)
-- [ ] Build and run self-generated eval set (Q&A pairs, hand-reviewed)
+- [x] Build and run self-generated eval set for retrieval (`eval/eval_set.json`, `scripts/run_eval.py`)
+- [ ] Improve retrieval on the eval misses, and add answer-level checks
 - [ ] FastAPI serving layer
 - [ ] Docker containerization
 

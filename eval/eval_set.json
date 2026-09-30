@@ -1,0 +1,162 @@
+[
+  {
+    "id": "q01",
+    "question": "We keep records under part 121. Does Part 11 apply to them?",
+    "expected_citations": ["21 CFR 11.1(o)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q02",
+    "question": "Can we send a submission to FDA electronically without a paper copy, and how do we know which document types FDA accepts that way?",
+    "expected_citations": ["21 CFR 11.2"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q03",
+    "question": "What does Part 11 mean by a digital signature, as opposed to an electronic signature?",
+    "expected_citations": ["21 CFR 11.3(b)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q04",
+    "question": "Do we have to be able to pull up old electronic records quickly for as long as we are required to keep them?",
+    "expected_citations": ["21 CFR 11.10(c)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q05",
+    "question": "Our records travel over a network we don't control. What extra protections does the rule expect?",
+    "expected_citations": ["21 CFR 11.30"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q06",
+    "question": "When someone signs a record electronically, what details about the signing have to appear with the record?",
+    "expected_citations": ["21 CFR 11.50"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q07",
+    "question": "What stops someone from copying an electronic signature off one record and attaching it to another?",
+    "expected_citations": ["21 CFR 11.70"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q08",
+    "question": "Do we have to confirm who a person is before giving them an electronic signature?",
+    "expected_citations": ["21 CFR 11.100"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q09",
+    "question": "If a user signs several records in one login session, do they have to enter both their user ID and password every time?",
+    "expected_citations": ["21 CFR 11.200"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q10",
+    "question": "We issue tokens that generate passcodes. Do they need to be tested, and what do we do if one is lost or stolen?",
+    "expected_citations": ["21 CFR 11.300"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q11",
+    "question": "Which kinds of records are exempt from Part 11?",
+    "expected_citations": [
+      "21 CFR 11.1(f)",
+      "21 CFR 11.1(i)",
+      "21 CFR 11.1(j)",
+      "21 CFR 11.1(k)",
+      "21 CFR 11.1(l)",
+      "21 CFR 11.1(m)",
+      "21 CFR 11.1(n)",
+      "21 CFR 11.1(o)",
+      "21 CFR 11.1(p)"
+    ],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q12",
+    "question": "Where do I find the meaning of terms this part uses but does not define itself?",
+    "expected_citations": ["21 CFR 11.3(a)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q13",
+    "question": "If an FDA inspector asks for copies of our electronic records, what form do the copies need to be in?",
+    "expected_citations": ["21 CFR 11.10(b)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q14",
+    "question": "Do records required by part 117 fall under Part 11?",
+    "expected_citations": ["21 CFR 11.1(i)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q15",
+    "question": "Do the people who build and use our electronic record system need any particular training or background?",
+    "expected_citations": ["21 CFR 11.10(i)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q16",
+    "question": "Does Part 11 apply to records we keep under subpart M of part 1?",
+    "expected_citations": ["21 CFR 11.1(m)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q17",
+    "question": "Do we need to validate our computer system, and what is validation meant to prove?",
+    "expected_citations": ["21 CFR 11.10(a)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q18",
+    "question": "Does Part 11 apply to electronic signatures obtained under section 101.8(d)?",
+    "expected_citations": ["21 CFR 11.1(h)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q19",
+    "question": "Does the system need to log who changed a record and when, and how long must that log be kept?",
+    "expected_citations": ["21 CFR 11.10(e)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q20",
+    "question": "Are records kept under subpart L of part 1 exempt from Part 11?",
+    "expected_citations": ["21 CFR 11.1(l)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q21",
+    "question": "What is the scope of this part?",
+    "expected_citations": ["21 CFR 11.1(a)", "21 CFR 11.1(b)"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q22",
+    "question": "What is the difference between an open system and a closed system, and what controls apply to each?",
+    "expected_citations": ["21 CFR 11.3(b)", "21 CFR 11.10", "21 CFR 11.30"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q23",
+    "question": "Can two employees share one login and password for signing records?",
+    "expected_citations": ["21 CFR 11.100", "21 CFR 11.300"],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q24",
+    "question": "What is the HIPAA penalty for a data breach?",
+    "expected_citations": [],
+    "origin": "claude_draft"
+  },
+  {
+    "id": "q25",
+    "question": "How many years must clinical trial records be retained?",
+    "expected_citations": [],
+    "origin": "claude_draft"
+  }
+]
