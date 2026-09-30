@@ -35,10 +35,10 @@ eCFR API ──fetch──▶ data/raw (XML) ──parse──▶ data/processed
 - Retrieval: `src/retriever.py` — 20 candidates from Chroma, MMR picks the top 6, returned as plain dicts
 - Answer generation: `src/generator.py` — grounded answer with `[n]` references; end to end via `scripts/ask.py`
 - Retrieval eval: `eval/eval_set.json` (25 questions) + `scripts/run_eval.py`. Results on 2026-09-30: plain top-6 on the original chunks scored hit rate 87% (20/23), MRR 0.757; the chunking fixes raised it to 96% (22/23), MRR 0.793; adding MMR raised it to 100% (23/23), MRR 0.802. Weakest questions now: q13 (rank 5), q04, q21, q23 (rank 4)
+- API: `src/api.py` — FastAPI, `POST /ask` and `GET /health`
 
 **Next up (in order)**
-1. FastAPI serving
-2. Docker
+1. Docker
 
 When something moves from "Next up" to "Working", also update the README: strike it off **Roadmap** and add it to **What's Working**.
 
@@ -57,6 +57,8 @@ When something moves from "Next up" to "Working", also update the README: strike
 - **Answer generation:** OpenAI `gpt-4o-mini`, temperature 0. The OpenAI project behind the key only allows models enabled under its Limits settings (currently `text-embedding-3-small` and `gpt-4o-mini`).
 - **Citation format:** numbered references — `[1]`, `[2]` in the answer, then a `Sources:` list mapping each number to its CFR citation. The list is built by code from the retrieved chunks, never written by the LLM.
 - **Retrieval:** fetch 20 candidates, then MMR (lambda 0.8) picks the top 6. No similarity threshold, no reranking. Lambda was chosen from a sweep on the eval set: 0.7–0.9 all scored 23/23, 0.6 and below started dropping correct paragraphs.
+
+- **API shape:** `POST /ask` takes `{"question": str}` (whitespace stripped, 1–500 chars; anything else is a 422 before any OpenAI call) and returns `{"question", "answer", "sources": [{"number", "citation"}]}`. Retrieved chunk text is not returned. OpenAI failures return 502 with a generic message; details go to the server log. Endpoints are plain `def` because the OpenAI and Chroma calls block.
 
 ## Open decisions — ask me when we get there
 
@@ -80,4 +82,4 @@ Run everything from the repo root. Scripts under `scripts/` import from `src`, s
 - Query index: `uv run python -m scripts.query_index "your question"`
 - Ask (retrieve + answer): `uv run python -m scripts.ask "your question"`
 - Retrieval eval: `uv run python -m scripts.run_eval` (one embedding call per in-scope question)
-- Run API: `...`
+- Run API: `uv run uvicorn src.api:app --reload`, then open http://127.0.0.1:8000/docs (each `/ask` = 1 embedding + 1 chat call; `/health` is free)
