@@ -8,6 +8,7 @@ __pycache__/
 *.pyc
 
 # Local Vector Databases & Caches (RAG-specific)
+db/
 chroma_db/
 faiss_index/
 .vectorstore/
