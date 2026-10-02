@@ -54,7 +54,6 @@ When something moves from "Next up" to "Working", also update the README: strike
 - **Eval set:** self-generated from the Part 11 text, not an off-the-shelf benchmark. Claude drafts the questions in the conversation and I review them — no script that calls the OpenAI API to generate questions. About 25 questions in `eval/eval_set.json`, each with `id`, `question`, `expected_citations` (empty list = out-of-scope question) and `origin`.
 - **Eval metrics (first version):** retrieval only — hit rate @ 6 and MRR. A question is a hit when any expected citation is in the top 6.
 - **Data layout:** raw fetched files → `data/raw/`, parsed output → `data/processed/`. `ingestion/` holds scripts only.
-- **README sections:** Tech Stack, How to Run, What's Working, Roadmap (checklist), License. License is MIT.
 - **Chroma:** collection `part11_chunks`, persisted to `db/chroma` (git-ignored). Chunk IDs are `21cfr_<section>` for a whole section, `21cfr_<section>_<letter>` for a lettered paragraph, `21cfr_<section>_<letter>_<number>` for a numbered item, and `21cfr_<section>_intro` for a lead-in — e.g. `21cfr_11.10_e`, `21cfr_11.3_b_5`. 45 chunks in total. Metadata per chunk: `section`, `subpart`, `citation`.
 
 - **Answer generation:** OpenAI `gpt-4o-mini`, temperature 0. The OpenAI project behind the key only allows models enabled under its Limits settings (currently `text-embedding-3-small` and `gpt-4o-mini`).
@@ -83,6 +82,7 @@ Run everything from the repo root. Scripts under `scripts/` import from `src`, s
 - Setup: `uv sync`, then put `OPENAI_API_KEY=...` in `.env`
 - Fetch + parse: `uv run python ingestion/fetch_ecfr.py` then `uv run python ingestion/parse_ecfr.py`
 - Chunk (inspect): `uv run python -m scripts.inspect_chunks`
+- Unit tests (offline, free): `uv run python -m unittest discover tests`
 - Build index: `uv run python -m scripts.build_index`
 - Query index: `uv run python -m scripts.query_index "your question"`
 - Ask (retrieve + answer): `uv run python -m scripts.ask "your question"`
